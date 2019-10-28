@@ -19,64 +19,70 @@ namespace ptr {
 	}
 
 	void shared_mut::increase() {
-		(this->_mgr->count)++;
+		// 현재 객체의 mgr에 있는 object ptr을 1 증가시켜 반환
+		(_mgr->count)++;
 	}
 
 	Object* shared_mut::get() const {
-		if (this->_mgr->ptr == nullptr) {
+		if (_mgr->ptr == nullptr) {
 			return nullptr;
 		}
+
 		else {
-			return this->_mgr->ptr;
-		}	
+			return _mgr->ptr;
+		}
 	}	
 
 	void shared_mut::release() {
-		if(this->_mgr->count != 0) {
-			(this->_mgr->count)--;
+		// 현재 객체의 mgr의 count가 0이 아니면 count를 1 감소
+		if(_mgr->count != 0) {
+			(_mgr->count--);
 		}
-
-		if(this->_mgr->count == 0) {
-			this->_mgr->~mgr();
+		
+		if(_mgr->count == 0) {
+			_mgr->~mgr();
 		}
-
-		this->_mgr = new mgr();
 	}	
 
 	int shared_mut::count() {
-		return this->_mgr->count;
+		// 현재 객체의 mgr의 count를 반환
+		return _mgr->count;
 	}
 
 	shared_mut shared_mut::operator+(const shared_mut &shared) {
-		Object l = *(this->_mgr->ptr);
-		Object s = *(shared._mgr->ptr);
-
-		return shared_mut (new Object(l.get() + s.get()));
+		int l = (*(_mgr->ptr)).get();
+		int s = (*(shared._mgr->ptr)).get();
+		// 현재 객체의 val값에 shared_mut의 val 값을 더하여 반환
+		return shared_mut (new Object(l + s));
 	}
 
 	shared_mut shared_mut::operator-(const shared_mut &shared) {
-		Object l = *(this->_mgr->ptr);
-		Object s = *(shared._mgr->ptr);
+		int l = (*(_mgr->ptr)).get();
+		int s = (*(shared._mgr->ptr)).get();
 
-		return shared_mut (new Object(l.get() - s.get()));
+		// 현재 객체의 val값에 shared_mut의 val 값을 뺴서 반환
+		return shared_mut (new Object(l - s));
 	}
 
 	shared_mut shared_mut::operator*(const shared_mut &shared) {
-		Object l = *(this->_mgr->ptr);
-		Object s = *(shared._mgr->ptr);
-
-		return shared_mut (new Object(l.get() * s.get()));
+		int l = (*(_mgr->ptr)).get();
+		int s = (*(shared._mgr->ptr)).get();
+		
+		// 현재 객체의 val값에 shared_mut의 val 값을 곱하여 반환
+		return shared_mut (new Object(l * s));
 	}
 
 	shared_mut shared_mut::operator/(const shared_mut &shared) {
-		Object l = *(this->_mgr->ptr);
-		Object s = *(shared._mgr->ptr);
+		int l = (*(_mgr->ptr)).get();
+		int s = (*(shared._mgr->ptr)).get();
 
-		return shared_mut (new Object(l.get()/s.get()));
+		// 현재 객체의 val값에 shared_mut의 val 값을 나누어 반환
+		return shared_mut (new Object(l / s));
 	}
 
 	Object* shared_mut::operator->() {
-		return this->_mgr->ptr;
+		// 현재 객체의 mgr의 object ptr을 반환
+		return _mgr->ptr;
 	}
 
 	shared_mut& shared_mut::operator=(const shared_mut &r) {

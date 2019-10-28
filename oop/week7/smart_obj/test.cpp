@@ -15,8 +15,8 @@ typedef ptr::unique_immut unique_obj;
 
 static std::vector<int(*)()> vec;
 
-void print_error(string& err) {
-	std::cout <<"\n\n\n"<< err << endl;
+void print_error(string &err) {
+	std::cout << err << endl;
 }
 
 /**
@@ -307,13 +307,13 @@ void init() {
     vec.push_back(test_shared_plus1);
     vec.push_back(test_shared_plus2);
     vec.push_back(test_shared_plus3);
-    vec.push_back(test_shared);
+    /*vec.push_back(test_shared);
     vec.push_back(test_shared_base);
     vec.push_back(test_shared_base2);
 
     vec.push_back(test_unique_base);
     vec.push_back(test_unique_base2);
-    vec.push_back(test_unique_plus1);
+    vec.push_back(test_unique_plus1);*/
 }
 
 int test_all() {

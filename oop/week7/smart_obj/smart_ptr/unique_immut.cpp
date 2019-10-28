@@ -41,39 +41,39 @@ namespace ptr {
 	}
 
 	unique_immut unique_immut::operator+(unique_immut &unique) {
-		Object l = *(this->_mgr->ptr);
-		Object u = *(unique._mgr->ptr);
+		int l = (*(this->_mgr->ptr)).get();
+		int u = (*(unique._mgr->ptr)).get();
 		release();
 		unique.release();
 		
-		return unique_immut(new Object(l.get() + u.get()));
+		return unique_immut(new Object(l + u));
 	}
 
 	unique_immut unique_immut::operator-(unique_immut &unique) {
-		Object l = *(this->_mgr->ptr);
-		Object u = *(unique._mgr->ptr);
+		int l = (*(this->_mgr->ptr)).get();
+		int u = (*(unique._mgr->ptr)).get();
 		release();
 		unique.release();
 		
-		return unique_immut(new Object(l.get() - u.get()));
+		return unique_immut(new Object(l - u));
 	}	
 
 	unique_immut unique_immut::operator*(unique_immut &unique) {
-		Object l = *(this->_mgr->ptr);
-		Object u = *(unique._mgr->ptr);
+		int l = (*(this->_mgr->ptr)).get();
+		int u = (*(unique._mgr->ptr)).get();
 		release();
 		unique.release();
 		
-		return unique_immut(new Object(l.get() * u.get()));
+		return unique_immut(new Object(l * u));
 	}
 
 	unique_immut unique_immut::operator/(unique_immut &unique) {
-		Object l = *(this->_mgr->ptr);
-		Object u = *(unique._mgr->ptr);
+		int l = (*(this->_mgr->ptr)).get();
+		int u = (*(unique._mgr->ptr)).get();
 		release();
 		unique.release();
 		
-		return unique_immut(new Object(l.get() / u.get()));
+		return unique_immut(new Object(l / u));
 	}
 
 	Object* unique_immut::operator->() {
@@ -82,9 +82,11 @@ namespace ptr {
 
 	unique_immut& unique_immut::operator=(unique_immut &r) {
 		if (this == &r) {
+			std::cout << "operator = " << std::endl;
 			return *this;
 		}
-	
+		
+
 		this->release();
 		*this = r;
 	
