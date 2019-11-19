@@ -1,4 +1,4 @@
-.SUFFFIXES: .cpp .o
+.SUFFIXES: .cpp .o
 
 OBJECTS = vehicle.o car.o bike.o
 
