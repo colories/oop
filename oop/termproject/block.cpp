@@ -11,19 +11,19 @@ Block::Block() {
 Block::Block(int type, int rotate) {
 	this->t = type;
 	this->r = rotate;
-	this->x = 2;
-	this->y = 1;
+	this->x = init_x;
+	this->y = init_y;
 
 	srand((unsigned int)time(NULL));
-	for (y = 0; y < 3; y++) {
-		for (x = 0; x < 3; x++) {
+	for (row = 0; row < 3; row++) {
+		for (col = 0; col < 3; col++) {
 			int random = rand()%4;
-			if (this->blocks[t][0][y][x] == 0) {
-				this->block[y][x] = 0;
+			if (this->blocks[t][0][row][col] == 0) {
+				this->block[row][col] = 0;
 			}
 			else {
 				cur_color = color[rand()%4];
-				this->block[y][x] = cur_color;
+				this->block[row][col] = cur_color;
 			}
 		}
 	}

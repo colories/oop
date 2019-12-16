@@ -24,7 +24,7 @@ void Board::set_status(int val_x, int val_y, int data) {
 	this->board[val_y][val_x] = data;
 }
 
-void Board::make_block() {
+/*void Board::make_block() {
 	int x, y;
 	srand((unsigned int)time(NULL));
 	Block cur_block = Block(rand()%3, 0);
@@ -34,7 +34,7 @@ void Board::make_block() {
 			this->set_status(x+2, y+1, cur_block.get_data(x,y));
 		}
 	}
-}
+}*/
 
 void Board::update(Block b, int key) {
 	int x, y;

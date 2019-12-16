@@ -20,7 +20,8 @@ int main(void)
 
 	Board board = Board();
 	srand((unsigned int)time(NULL));
-	Block b = Block(rand()%3, 0);
+	int type = rand()%3;
+	Block b = Block(type, 0);
 	cout<<"Hello~~~~~"<<endl;
 	board.update(b, 0);
 

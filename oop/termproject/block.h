@@ -14,11 +14,13 @@ using std::endl;
 #define RED 31
 #define GREEN 32
 #define BLUE 34
+#define init_x 2
+#define init_y 1
 
 class Block
 {
 private:
-	int t, r, x, y;
+	int t, r, x, y, row, col;
 	const int color[4] = {GREY, RED, GREEN, BLUE};
 	const int blocks[3][4][3][3] = {
 		{
